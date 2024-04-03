@@ -19,15 +19,43 @@ model User {
   name        String? 
   number      String  @unique
   password    String
+  OnRampTransaction OnRampTransaction[]
+  Balence     Balence[]
 }
-model Merchant {
-  id          Int     @id @default(autoincrement())
-  email       String  @unique
-  name        String?
-  auth_type   AuthType   
+
+model OnRampTransaction{
+  id Int  @id @default(autoincrement())
+  status  OnRampStatus
+  token String @unique
+  provided String
+  amount Int
+  startTime DateTime 
+  userId Int
+  user User @relation(fields: [userId] ,references: [id])
+   
 }
+model Balence {
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  amount Int
+  locked Int
+  user  User @relation(fields: [userId],references: [id])
+}
+// model Merchant {
+//   id          Int     @id @default(autoincrement())
+//   email       String  @unique
+//   name        String?
+//   auth_type   AuthType   
+// }
+
 
 enum AuthType {
   Google
   Github
+}
+enum OnRampStatus {
+Success
+Failure
+Processing
+
 }
