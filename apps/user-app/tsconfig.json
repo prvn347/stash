@@ -12,7 +12,8 @@
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "app/(dashboard)/transaction"
   ],
   "exclude": ["node_modules"]
 }
