@@ -3,16 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-"./appbar": "./src/appbar.tsx",
-"./": "./src/.tsx",
-"./button-tsx": "./src/button-tsx.tsx",
+"./text-input": "./src/text-input.tsx",
+"./select": "./src/select.tsx",
+    "./center": "./src/center.tsx",
+    "./hello": "./src/hello.tsx",
+    "./appbar": "./src/appbar.tsx",
+    "./": "./src/.tsx",
+    "./button-tsx": "./src/button-tsx.tsx",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "comp": "turbo gen react-component"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

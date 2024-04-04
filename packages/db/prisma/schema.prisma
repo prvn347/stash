@@ -27,7 +27,7 @@ model OnRampTransaction{
   id Int  @id @default(autoincrement())
   status  OnRampStatus
   token String @unique
-  provided String
+  provider String
   amount Int
   startTime DateTime 
   userId Int
