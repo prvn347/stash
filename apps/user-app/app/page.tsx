@@ -3,10 +3,17 @@
 import { PrismaClient } from "@repo/db/client";
 
 // import { useB } from "@repo/store/useB";
-import Balence from "../components/Balence";
+
 import { Appbar } from "@repo/ui/appbar";
+import { getServerSession } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
-export default function Page(): JSX.Element {
-  const session = useSession();
-  return <div>heelo</div>;
+import { NEXT_AUTH } from "../lib/auth";
+import { redirect } from "next/navigation";
+export default async function Page(): Promise<JSX.Element> {
+  const session = await getServerSession(NEXT_AUTH);
+  if (session?.user) {
+    redirect("/dashboard");
+  } else {
+    redirect("/api/auth/signin");
+  }
 }
