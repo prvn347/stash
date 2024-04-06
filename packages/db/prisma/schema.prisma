@@ -21,8 +21,18 @@ model User {
   password    String
   OnRampTransaction OnRampTransaction[]
   Balence     Balence[]
+  sentTransfers     P2PTransfer[]       @relation(name: "FromUserRelation")
+  receivedTransfers P2PTransfer[]       @relation(name: "ToUserRelation")
 }
-
+model P2PTransfer{
+  id          Int      @id @default(autoincrement())  
+  timestamp  DateTime
+  amount Int
+  fromUserId Int
+  fromUser User  @relation(name: "FromUserRelation",fields: [fromUserId],references: [id])
+  toUserId Int
+  toUser User  @relation(name: "ToUserRelation",fields: [toUserId],references: [id])
+}
 model OnRampTransaction{
   id Int  @id @default(autoincrement())
   status  OnRampStatus
@@ -34,6 +44,7 @@ model OnRampTransaction{
   user User @relation(fields: [userId] ,references: [id])
    
 }
+
 model Balence {
   id Int @id @default(autoincrement())
   userId Int @unique
