@@ -25,10 +25,9 @@ export const NEXT_AUTH = {
           placeholder: "enter your number",
         },
         password: { label: "password", type: "password" },
-        name: { label: "fullName", type: "text", placeholder: "name sir" },
       },
       async authorize(
-        credentials: Record<"phone" | "password" | "name", string> | undefined
+        credentials: Record<"phone" | "password", string> | undefined
       ) {
         // const cred = UserInputSchema.safeParse(credentials);
 
@@ -50,32 +49,14 @@ export const NEXT_AUTH = {
 
             return {
               id: existingUser.id.toString(),
-              name: existingUser.name,
               phone: existingUser.number,
+              name: existingUser.name,
             };
 
             return null;
           }
         } catch (error) {
           throw error;
-        }
-
-        try {
-          const user = await db.user.create({
-            data: {
-              number: credentials.phone,
-              password: credentials.password,
-              name: credentials.name,
-            },
-          });
-
-          return {
-            id: user.id.toString(),
-            name: user.name,
-            email: user.number,
-          };
-        } catch (e) {
-          console.error(e);
         }
 
         return null;
