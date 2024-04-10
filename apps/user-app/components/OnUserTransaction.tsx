@@ -35,7 +35,7 @@ export const OnUserTransaction = ({
   return (
     <div className="pt-2 w-full  p-2 ">
       {transactions.map((t) => (
-        <div className="flex justify-between  border rounded-md p-2 bg-gray-400  ">
+        <div className="flex justify-between  border border-black rounded-md p-2   ">
           <div>
             {
               <div className="text-sm">
@@ -48,11 +48,11 @@ export const OnUserTransaction = ({
             {/* <div className="text-slate-600 text-xs">{t.status}</div> */}
           </div>
           {t.isMe ? (
-            <div className="flex flex-col justify-center text-green-500 ">
+            <div className="flex flex-col justify-center text-green-500  font-bold ">
               + Rs {t.amount / 100}
             </div>
           ) : (
-            <div className="flex flex-col justify-center text-red-600 ">
+            <div className="flex flex-col justify-center text-red-600 font-bold  ">
               - Rs {t.amount / 100}
             </div>
           )}

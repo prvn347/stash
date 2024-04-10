@@ -5,6 +5,8 @@ const db = new PrismaClient();
 
 import { UserInputSchema } from "@repo/common/UserInputSchema";
 import { constSelector } from "recoil";
+import { pages } from "next/dist/build/templates/app-page";
+import { signIn } from "next-auth/react";
 interface creadential {
   id?: string;
   phone: string;
@@ -23,9 +25,10 @@ export const NEXT_AUTH = {
           placeholder: "enter your number",
         },
         password: { label: "password", type: "password" },
+        name: { label: "fullName", type: "text", placeholder: "name sir" },
       },
       async authorize(
-        credentials: Record<"phone" | "password", string> | undefined
+        credentials: Record<"phone" | "password" | "name", string> | undefined
       ) {
         // const cred = UserInputSchema.safeParse(credentials);
 
@@ -62,6 +65,7 @@ export const NEXT_AUTH = {
             data: {
               number: credentials.phone,
               password: credentials.password,
+              name: credentials.name,
             },
           });
 
@@ -86,5 +90,8 @@ export const NEXT_AUTH = {
 
       return session;
     },
+  },
+  pages: {
+    signIn: "/signin",
   },
 };
