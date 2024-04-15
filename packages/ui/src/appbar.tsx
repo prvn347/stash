@@ -26,7 +26,7 @@ export const Appbar = ({
         onClick={homeRoute}
         className={`text-2xl flex text-newpurple cursor-pointer flex-col justify-center  ${lexend_Deca.className}`}
       >
-        stash
+        stash-wallet
       </div>
       <div className="flex flex-col justify-center pt-2 ">
         <Button onClick={user ? onSignout : onSignin}>

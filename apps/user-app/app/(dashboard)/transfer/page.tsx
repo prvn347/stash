@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { OnRampTransactions } from "../../../components/OnRampTransaction";
 import { NEXT_AUTH } from "../../../lib/auth";
 const prisma = new PrismaClient();
-async function getBalance() {
+export async function getBalance() {
   const session = await getServerSession(NEXT_AUTH);
   const balance = await prisma.balence.findFirst({
     where: {
